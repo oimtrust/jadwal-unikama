@@ -67,10 +67,7 @@ Hi <?php echo $user_login['role']; ?>! - Sistem Penjadwalan UNIKAMA </title>
 	  exit_to_app</i></button>
 <?php 
 if ($_SESSION['role'] == 'approve') {
-					?>
-					
-		<button class="btn waves-effect teal darken-2" type="button" Value="Dashboard" Onclick="window.location.href='approve_tambah.php'">Tambah Data</button>
-			<?php if ($data['username'] != 'approve') {?>
+					 if ($data['username'] != 'approve') {?>
 						<?php } ?>
 					
 					<?php } ?>
@@ -129,7 +126,7 @@ if ($_SESSION['role'] == 'approve') {
 					<?php 
 					$data['kd_jadwal']; 
 					
-					// jika user yang login memiliki role sebagai approve, maka tampilkan menu untuk edit dan delete user
+					// jika user yang login memiliki role sebagai approve, maka tampilkan menu untuk terima dan ditolak
 					if ($_SESSION['role'] == 'approve') {
 					?>
 					<div class="row-actions">
@@ -224,7 +221,7 @@ if ($_SESSION['role'] == 'approve') {
 		<div style="text-align:center">
 			<h4 class="btn waves-effect red darken-3">Tabel Pemesan Ditolak</h4>
 		</div>
-
+		<button class="btn waves-effect teal amber darken-4" type="button" Value="Dashboard" Onclick="window.location.href='approve_print_tolak.php'">Cetak Data Ditolak</button>
 		<div>
 			<table id="TableTolak" class="highlight responsive-table bordered z-depth-4">
 				<thead>
@@ -356,7 +353,7 @@ if ($_SESSION['role'] == 'approve') {
 		<div style="text-align:center">
 			<h4 class="btn waves-effect red darken-3">Tabel Pemesan Di Terima</h4>
 		</div>
-
+		<button class="btn waves-effect teal amber darken-4" type="button" Value="Dashboard" Onclick="window.location.href='approve_print_terima.php'">Cetak Data Diterima</button>
 		<div>
 			<table id="TableTerima" class="highlight responsive-table bordered z-depth-4">
 				<thead>
