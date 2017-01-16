@@ -67,6 +67,10 @@ Hi <?php echo $user_login['role']; ?>! - Sistem Penjadwalan UNIKAMA </title>
 	  exit_to_app</i></button>
 <?php 
 if ($_SESSION['role'] == 'approve') {
+	?>
+		<button class="btn waves-effect light-blue darken-1" type="button" Value="Dashboard" Onclick="window.location.href='#'">Lihat Ruang</button>
+	<?php
+
 					 if ($data['username'] != 'approve') {?>
 						<?php } ?>
 					
