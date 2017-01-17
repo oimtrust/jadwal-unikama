@@ -57,6 +57,6 @@
 	$mpdf->mirrorMargins = 1;
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($html, 2);
-	$mpdf->Output('laporan-pemesanan.pdf', 'I');
+	$mpdf->Output('laporan-pemesanan-tolak.pdf', 'I');
 	exit;
  ?>

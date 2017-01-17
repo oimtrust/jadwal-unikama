@@ -54,27 +54,27 @@ Hi <?php echo $user_login['role']; ?>! - Sistem Penjadwalan UNIKAMA </title>
 
 	
 	<div>
-	<?php
-	$username = $_SESSION['username'];
-	$query_user_login = mysql_query("select * from users where username='$username'");
-	
-	$user_login = mysql_fetch_array($query_user_login);
-	?>
-	<span class="btn waves-effect waves-light red darken-2" style="cursor:default">
-		Selamat Datang, <?php echo $user_login['nama_staff']; ?>!</span>
-	 <button class="btn waves-effect waves-light red darken-2 right" type="button" Value="logout"
-	  Onclick="window.location.href='logout-dosen.php'">Logout <i class="material-icons right">
-	  exit_to_app</i></button>
-<?php 
-if ($_SESSION['role'] == 'approve') {
-	?>
-		<button class="btn waves-effect light-blue darken-1" type="button" Value="Dashboard" Onclick="window.location.href='#'">Lihat Ruang</button>
-	<?php
+		<?php
+			$username = $_SESSION['username'];
+			$query_user_login = mysql_query("select * from users where username='$username'");
+			
+			$user_login = mysql_fetch_array($query_user_login);
+		?>
+		<span class="btn waves-effect waves-light red darken-2" style="cursor:default">
+			Selamat Datang, <?php echo $user_login['nama_staff']; ?>!</span>
+		 <button class="btn waves-effect waves-light red darken-2 right" type="button" Value="logout"
+		  Onclick="window.location.href='approve-logout.php'">Logout <i class="material-icons right">
+		  exit_to_app</i></button>
+	<?php 
+		if ($_SESSION['role'] == 'approve') {
+		?>
+			<button class="btn waves-effect light-blue darken-1" type="button" Value="Dashboard" Onclick="window.location.href='approve-lihatruang.php'">Lihat Ruang</button>
+		<?php
 
-					 if ($data['username'] != 'approve') {?>
+						 if ($data['username'] != 'approve') {?>
+							<?php } ?>
+						
 						<?php } ?>
-					
-					<?php } ?>
       </div>
 
      <br /><br/>
