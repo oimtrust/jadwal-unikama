@@ -1,37 +1,57 @@
+<?php 
+    require_once 'helper/cek_login.php';
+    require_once 'helper/config.php';
+ ?>
+
+ <html>
+<head>
+    <title></title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="materialize/css/materialize.css" type="text/css" />
+<link rel="stylesheet" href="materialize/css/materialize.min.css" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="materialize/js/jquery-1.11.3.min.js"></script>
+
 <!--Fungsi Load Javascript fusioncharts-->
 <script type="text/javascript" src="materialize/js/jquery-1.4.js"></script>
 <script type="text/javascript" src="materialize/js/jquery.fusioncharts.js"></script>
+<style type="text/css">
+    th,td {
+        text-align:center;
+    }
+</style>
+</head>
+<body>
+
 <!--GRAFIK JUMLAH SISWA PER KELAS-->
-<div class="tengah_judul">
-   	Grafik Jumlah Ruangan yang di pesan<hr align="left" size="1" color="#cccccc">
-</div>
+<div class="row">
+<div class="col s5 offset-s3">
+    Grafik Jumlah Ruangan yang di pesan<hr align="left" size="1" color="#cccccc">
 
 <table id="TablePesan" border="0" align="center" cellpadding="10">
     <tr bgcolor="#FF9900" style='display:none;'> <th>Ruang</th> <th>Jumlah Pemesan</th></tr>
     <?php
-	//KONEKSI KE DATABASE
-	mysql_connect("localhost", "root", "") ;
-    mysql_select_db("jadwal_unikama");
-	//QUERY AMBIL DATA KELAS
-    $query_ruang = "SELECT * FROM ruang";
-    $result_ruang = mysql_query($query_ruang);
-    $count_ruang = mysql_num_rows($result_ruang);
+    
+        //QUERY AMBIL DATA RUANG
+        $query_ruang = "SELECT `status`, COUNT(*) FROM tbl_jadwal AS jdwal WHERE `status` = 'Di Terima' OR `status` = 'Di Tolak' GROUP BY `status`";
+        $result_ruang = mysql_query($query_ruang);
+                        
+        while ($data = mysql_fetch_array($result_ruang)) {
+    ?>
 
-    while ($data = mysql_fetch_array($result_ruang)) {
-        $kode_ruang = $data['id_ruang'];
-		//QUERY MENGHITUNG JUMLAH SISWA SESUAI DENGAN KODE KELAS
-        $query_siswa = "SELECT COUNT(*) AS jumlah_ruang FROM approve WHERE id_ruang='$kode_ruang'";
-        $result_siswa = mysql_query($query_siswa);
-        $data_siswa = mysql_fetch_array($result_siswa);
+    <tr>
+        <td><?php echo $data['status']; ?></td>
+        <td><?php echo $data['COUNT(*)']; ?></td>
+    </tr>
 
-        echo "<tr bgcolor='#D5F35B' style='display:none;'>
-              <td>Ruang $data[nama_ruang]</td>
-              <td align='center'>$data_siswa[jumlah_ruang]</td>
-              </tr>";
-    }
+    <?php 
+        } 
     ?>
 
 </table>
+
+</div>
+</div>
 
 <button Onclick="window.location.href='approve.php'">Kembali</button>
 <!--LOAD HTML KE JQUERY FUSION CHART BERDASARKAN ID TABLE-->
@@ -43,3 +63,7 @@
         dataFormat: "HTMLTable"
     });
 </script>
+
+
+</body>
+</html>

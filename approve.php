@@ -497,28 +497,16 @@ Hi <?php echo $user_login['role']; ?>! - Sistem Penjadwalan UNIKAMA </title>
     			</thead>
     			<tbody >
     				<?php
-						//KONEKSI KE DATABASE
-						//mysql_connect("localhost", "root", "") ;
-    					//mysql_select_db("jadwal_unikama");
-						
-						//QUERY AMBIL DATA KELAS
-    					$query_ruang = "SELECT * FROM ruang";
-    					$result_ruang = mysql_query($query_ruang);
-    					$count_ruang = mysql_num_rows($result_ruang);
-
-    					while ($data = mysql_fetch_array($result_ruang)) {
-        				$kode_ruang = $data['id_ruang'];
 						//QUERY MENGHITUNG JUMLAH SISWA SESUAI DENGAN KODE KELAS
-        				$query_pemesan = "SELECT COUNT(*) AS jumlah_ruang FROM approve WHERE id_ruang='$kode_ruang'";
+        				$query_pemesan = "SELECT `status`, COUNT(*) FROM tbl_jadwal AS jdwal WHERE `status` = 'Di Terima' OR `status` = 'Di Tolak' GROUP BY `status`";
         				$result_pemesan = mysql_query($query_pemesan);
-        				$data_pemesan = mysql_fetch_array($result_pemesan);
+        				$data_pemesan = mysql_fetch_assoc($result_pemesan);
 
-        				echo "<tr>
-              					<td>Ruang $data[nama_ruang]</td>
-              					<td >$data_pemesan[jumlah_ruang]</td>
-              					</tr>";
-    					}
-    				?>
+        					?>
+        					<tr>
+        						<td><?php echo $data_pemesan['status']; ?></td>
+        						<td><?php echo $data_pemesan['COUNT(*)']; ?></td>
+        					</tr>
     			</tbody>
 			</table>
 
