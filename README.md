@@ -8,9 +8,7 @@ Jadwal Unikama was created by and is maintained by **[F. Rohim](https://about.me
 * https://www.facebook.com/otrusttutorial
 
 ## How to use?
-* Admin : jadwal-unikama/admin.php
-
-`username : admin, password : misunikama`
+* Admin : visit this link : `localhost://jadwal-unikama/admin.php` | `username : admin, password : misunikama`
 
 * Staff :
 `username : member, password : member`
